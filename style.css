@@ -1,139 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600&display=swap');
+/* style.css — 랜딩형 여행 페이지 (섹션별 구글지도 임베드) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;800&display=swap');
 
-:root {
-  --bg: #f7fbff;
+:root{
+  --bg: #fbfdff;
   --card: #fff;
   --accent: #1777ff;
-  --text: #0f172a;
   --muted: #6b7280;
-  --radius: 14px;
-  --shadow: 0 6px 20px rgba(0,0,0,0.05);
+  --text: #0f172a;
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(15,23,42,0.06);
+  --wrap: 1080px;
 }
 
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  padding: 16px;
-  line-height: 1.6;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Noto Sans KR', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background:linear-gradient(180deg,#f7fbff 0%, #f9fff8 100%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-h1, h2 {
-  color: var(--accent);
-  margin-top: 0;
-}
+.wrap{width:calc(100% - 36px);max-width:var(--wrap);margin:0 auto;padding:18px}
 
-header.hero {
-  background: linear-gradient(135deg, #e9f3ff, #f7fff9);
-  padding: 20px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-bottom: 24px;
-}
+/* HERO */
+.hero{padding:18px 0}
+.hero h1{margin:0;color:var(--accent);font-size:22px;font-weight:800}
+.lead{margin:8px 0;color:var(--muted)}
+.meta{color:var(--muted);font-size:13px}
 
-.tabs {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 16px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: #eaf3ff;
-}
+/* SECTION */
+.section{margin-top:18px}
+.section h2{margin:0 0 12px;color:var(--accent);font-size:18px}
 
-.tab {
-  flex: 1;
-  padding: 12px 0;
-  border: none;
-  background: transparent;
-  font-weight: 600;
-  color: var(--accent);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+/* GRID */
+.grid{display:grid;grid-template-columns:1fr 420px;gap:16px;align-items:start}
+@media (max-width:980px){ .grid{grid-template-columns:1fr} }
 
-.tab.active {
-  background: var(--accent);
-  color: #fff;
+/* CARD */
+.card{
+  background:var(--card);
+  border-radius:12px;
+  padding:14px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(15,23,42,0.03);
 }
+.card h3{margin:0 0 8px;color:var(--accent);font-size:15px}
+.card ul, .card ol{margin:8px 0 0 18px;color:var(--muted)}
+.card table{width:100%;border-collapse:collapse;margin-top:8px}
+.card table th, .card table td{padding:8px;border-top:1px solid rgba(15,23,42,0.04);text-align:left}
+.small{font-size:13px}
+.muted{color:var(--muted);font-size:13px}
+.link{display:inline-block;margin-top:8px;color:var(--accent);font-weight:700;text-decoration:none}
 
-section {
-  display: none;
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 18px;
-  margin-bottom: 18px;
-}
+/* MAP CARD */
+.map-card h3{margin-bottom:8px}
+.map-card iframe{width:100%;height:320px;border:0;display:block;border-radius:10px}
+@media (max-width:980px){ .map-card iframe{height:240px} }
 
-section.active {
-  display: block;
-  animation: fadeIn 0.4s ease-in;
-}
+/* SPOTS */
+.spot-list{list-style:none;padding:0;margin:6px 0 0}
+.spot-list li{padding:8px 0;border-bottom:1px dashed rgba(15,23,42,0.04)}
+.spot-list li a{color:var(--accent);text-decoration:none;font-weight:600}
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+/* FOOTER */
+.footer{margin-top:26px;padding:14px 0;text-align:center;color:var(--muted);font-size:13px}
 
-ul {
-  margin: 10px 0 0 20px;
-  padding: 0;
-}
-
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.map-container {
-  width: 100%;
-  height: 400px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  margin-top: 10px;
-}
-
-.link {
-  margin-top: 15px;
-  text-align: center;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 16px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: var(--radius);
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: var(--shadow);
-}
-
-.btn:hover {
-  background: #0f5fd1;
-}
-
-footer {
-  text-align: center;
-  font-size: 14px;
-  color: var(--muted);
-  margin: 30px 0 10px;
-}
-
-/* 모바일 반응형 */
-@media (max-width: 768px) {
-  body { padding: 10px; }
-  header.hero { padding: 16px; }
-  h1 { font-size: 20px; }
-  h2 { font-size: 16px; }
-  .map-container { height: 260px; }
-  .tab { font-size: 14px; }
+/* Responsive adjustments */
+@media (max-width:680px){
+  .wrap{padding:12px;width:calc(100% - 24px)}
+  .hero h1{font-size:18px}
+  .section h2{font-size:16px}
+  .card h3{font-size:14px}
+  .map-card iframe{height:220px}
 }
